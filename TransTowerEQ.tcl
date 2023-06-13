@@ -39,7 +39,7 @@ source INPLsection.tcl; # 2 input
 source INPgeometricTransformation.tcl; # 3 input
 
 # Define Beam-Column Elements
-set numIntgrPts 2;	# number of Gauss integration points for nonlinear curvature distribution
+set numIntgrPts 5;	# number of Gauss integration points for nonlinear curvature distribution
 source INPelements.tcl; # 4 input
 
 # --------------------------------------------------------------------------------------------------------------------------------
