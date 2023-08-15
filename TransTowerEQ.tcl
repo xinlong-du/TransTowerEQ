@@ -95,10 +95,12 @@ puts "Model Built"
 
 # DYNAMIC ground-motion analysis -------------------------------------------------------------
 # create load pattern
-set accelSeries "Series -dt 0.01 -filePath BM68elc.acc -factor 1";	# define acceleration vector from file (dt=0.01 is associated with the input file gm)
+set groundMotionPath "Series -dt 0.01 -filePath GroundMotions/Ground_Motions/rep1/";
+set groundMotionPara ".txt -factor 1";
+set accelSeries $groundMotionPath$pid$groundMotionPara;	# define acceleration vector from file (dt=0.01 is associated with the input file gm)
 pattern UniformExcitation 2 1 -accel $accelSeries;		# define where and how (pattern tag, dof) acceleration is applied
 
-recorder Node -file $dataDir/$pid.out -time -dT 0.1 -node 119 128 111 112 -dof 1 2 3 disp;			# displacements
+recorder Node -file $dataDir/$pid.out -time -dT 0.01 -node 119 128 111 112 -dof 1 2 3 disp;			# displacements
 
 rayleigh 0. 0. 0. [expr 2*0.02/pow([eigen 1],0.5)];		# set damping based on first eigen mode
 
@@ -116,7 +118,7 @@ integrator Newmark 0.5 0.25;			# determine the next time step for an analysis
 #algorithm Linear
 #integrator CentralDifference
 analysis Transient;					# define type of analysis: time-dependent
-analyze 1000 0.02;
+analyze 100 0.01;
 
 puts "Done!"
 
