@@ -95,7 +95,7 @@ puts "Model Built"
 
 # DYNAMIC ground-motion analysis -------------------------------------------------------------
 # create load pattern
-set groundMotionPath "Series -dt 0.01 -filePath GroundMotions/Histories_FEMA_Resp1/";
+set groundMotionPath "Series -dt 0.01 -filePath GroundMotions/Histories_FEMA_Resp1_group2/";
 set groundMotionPara ".txt -factor 1";
 set accelSeries $groundMotionPath$pid$groundMotionPara;	# define acceleration vector from file (dt=0.01 is associated with the input file gm)
 pattern UniformExcitation 2 1 -accel $accelSeries;		# define where and how (pattern tag, dof) acceleration is applied
